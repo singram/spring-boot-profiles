@@ -8,13 +8,24 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath('se.transmode.gradle:gradle-docker:1.2')
+        classpath('org.flywaydb:flyway-gradle-plugin:4.0.3')
 	}
+}
+
+plugins {
+    id "org.flywaydb.flyway" version "4.0.3"
 }
 
 apply plugin: 'java'
 apply plugin: 'docker'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+
+flyway {
+    url = 'jdbc:mysql://127.0.0.1/test'
+    user = 'myuser'
+    password = 'mypass'
+}
 
 jar {
 	baseName = 'spring-boot-multitenant'

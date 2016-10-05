@@ -43,15 +43,20 @@ To install the 1.6.0:
 
 ## Usage
 
-### Prime the database
+### Start the database
 
     docker-compose up mysql
-    mysql -u myuser -pmypass -h 127.0.0.1 test < db_migrations.sql
 
 ### Start the app
 
+To run as a dockerized app with default profile
+
     ./gradlew build buildDocker
     docker-compose up api
+
+or locally with the 'dev' profile
+
+    SPRING_PROFILES_ACTIVE=dev gradle clean bootRun
 
 ### API interactions
 
